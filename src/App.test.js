@@ -1,8 +1,10 @@
 import { render, screen } from '@testing-library/react';
 import App from './App';
 
-test('renders learn react link', () => {
+test('Test DigimonInitial', () => {
   render(<App />);
-  const linkElement = screen.getByText(/learn react/i);
-  expect(linkElement).toBeInTheDocument();
+  const btnDigivice = screen.getByRole('button', {
+    name: /digivice/i,
+  });
+  expect(btnDigivice).toBeInTheDocument();
 });

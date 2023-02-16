@@ -1,24 +1,22 @@
-import logo from './logo.svg';
 import './App.css';
+import { Switch, Route } from 'react-router-dom';
+import DigimonLevel from './pages/DigimonLevel';
+import DigimonInitial from './pages/DigimonInitial';
+import NotFound from './pages/NotFound';
+import DigimonHome from './pages/DigimonHome';
+import DigimonDetails from './pages/DigimonDetails';
+import DigimonFavorite from './pages/DigimonFavorite';
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Switch>
+      <Route exact path="/" component={ DigimonInitial } />
+      <Route exact path="/home" component={ DigimonHome } />
+      <Route exact path="/favorites" component={ DigimonFavorite } />
+      <Route exact path="/level/:id" component={ DigimonLevel } />
+      <Route exact path="/detail/:id" component={ DigimonDetails } />
+      <Route exact path="*" component={ NotFound } />
+    </Switch>
   );
 }
 
