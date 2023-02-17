@@ -1,12 +1,13 @@
 import React, { useEffect, useState } from 'react';
 import { useHistory, useParams } from 'react-router-dom';
 import { fetchDigimonByName } from '../services/digimonApi';
+import { changeTraining } from '../services/changeTraining';
+import { favoriteSome } from '../services/checkFavorite';
+import Header from '../components/Header';
 import Loading from '../components/Loading';
 import emptyHearth from '../images/empty-hearth.svg';
 import blueHearth from '../images/blue-hearth.svg';
 import '../styles/digimon-detail.css';
-import Header from '../components/Header';
-import { changeTraining } from '../services/changeTraining';
 
 const FOURHOUND = 400;
 const TWOHOUND = 200;
@@ -39,28 +40,30 @@ export default function DigimonDetails() {
 
   useEffect(() => {
     if (dataObject !== undefined && storageFavorite !== null) {
-      const checkFavorite = storageFavorite
-        .some((digimon) => digimon.name === dataObject.name);
+      const checkFavorite = favoriteSome(storageFavorite, dataObject);
       if (checkFavorite) {
         setImgFavorite(blueHearth);
       }
     }
+    if (storageFavorite === null) {
+      localStorage.setItem('favorites', '[]');
+    }
   }, [dataObject, storageFavorite]);
 
   const handleFavorite = () => {
-    const checkFavorite = storageFavorite
-      .some((digimon) => digimon.name === dataObject.name);
-
-    if (!checkFavorite) {
-      storageFavorite.push(dataObject);
-      localStorage.setItem('favorites', JSON.stringify(storageFavorite));
-      setImgFavorite(blueHearth);
-    }
-    if (checkFavorite) {
-      const haveDigimon = storageFavorite
-        .filter((digimon) => digimon.name !== dataObject.name);
-      localStorage.setItem('favorites', JSON.stringify(haveDigimon));
-      setImgFavorite(emptyHearth);
+    if (storageFavorite !== null) {
+      const checkFavorite = favoriteSome(storageFavorite, dataObject);
+      if (!checkFavorite) {
+        storageFavorite.push(dataObject);
+        localStorage.setItem('favorites', JSON.stringify(storageFavorite));
+        setImgFavorite(blueHearth);
+      }
+      if (checkFavorite) {
+        const haveDigimon = storageFavorite
+          .filter((digimon) => digimon.name !== dataObject.name);
+        localStorage.setItem('favorites', JSON.stringify(haveDigimon));
+        setImgFavorite(emptyHearth);
+      }
     }
   };
 

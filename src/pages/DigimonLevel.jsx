@@ -2,7 +2,9 @@ import React, { useEffect, useState } from 'react';
 import { Link, useParams } from 'react-router-dom';
 import DigimonSearch from '../components/DigimonSearch';
 import { fetchDigimonByLevel } from '../services/digimonApi';
+import { changeTraining } from '../services/changeTraining';
 import Loading from '../components/Loading';
+import CardDigimon from '../components/CardDigimon';
 
 export default function DigimonLevel() {
   const [dataApi, setDataApi] = useState([]);
@@ -33,13 +35,8 @@ export default function DigimonLevel() {
     if (dataApi !== null) {
       const findTraining = dataApi.some((digimon) => digimon.level === 'Training');
       if (findTraining) {
-        const changeValueTraning = dataApi.map((element) => {
-          if (element.level === 'Training') {
-            return { ...element, level: 'In Training' };
-          }
-          return element;
-        });
-        setDataApi(changeValueTraning);
+        const objectAdjust = changeTraining(dataApi);
+        setDataApi(objectAdjust);
       }
     }
   }, [dataApi]);
@@ -51,16 +48,12 @@ export default function DigimonLevel() {
         <div className="digimon-content">
           { dataApi.map((digimon) => (
             <div key={ digimon.name }>
-              <Link to={ `/detail/${digimon.name}` }>
-                <div className="digimon-card">
-                  <div className="digimon-name">
-                    { digimon.name }
-                  </div>
-                  <img src={ digimon.img } alt={ digimon.name } className="digimon-img" />
-                  <div className="digimon-level">
-                    {digimon.level}
-                  </div>
-                </div>
+              <Link to={ (`/detail/${digimon.name}`).toLocaleLowerCase() }>
+                <CardDigimon
+                  name={ digimon.name }
+                  img={ digimon.img }
+                  level={ digimon.level }
+                />
               </Link>
             </div>
           ))}

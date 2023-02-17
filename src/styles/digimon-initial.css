@@ -4,44 +4,61 @@ body {
 
 #initial-container{
     display: flex;
-    flex-direction: column;
-    justify-content: center;
+    margin: auto;
+    margin-top: 6em;
+    margin-bottom: 6em;
+    border-radius: 10px;
+    border: 3px solid rgb(255, 254, 254);
+    width: 60em;
+    height: 35em;
     text-align: center;
     color: white;
 }
 
 #initial-title{
+  display: flex;
+  flex-direction: column;
+  text-align: center;
   background-color: #e4e1dc;
+  width: 100vh;
   color: #443c70;
+}
+
+#initial-title h1 {
+  margin-top: 50px;
+}
+
+#initial-title p {
+  display: flex;
+  margin-top: 90px;
+  color: #643c30;
+  font-size: 20px;
+}
+
+#initial-title h2 {
+  margin-top: 200px;
+}
+
+#digivice-container{
+  display: flex;
+  background-color: #211562;
+  border-radius: 10px;
 }
 
 #btn-initial{
     background-color: transparent;
     border: none;
-    width: 60vh;
+    width: 70%;
     margin: auto;
     cursor: pointer;
 }
 
 #img-initial{
-  width: 60vh;
+  width: 100%;
 }
 
 #img-initial:hover {
     animation: shake 0.5s;
-}
-
-#background-initial {
-  position: absolute;
-  background-image: url('../images/initial-bg.png');
-  background-position-x: 100%; /* ajusta a posição horizontal da imagem */
-  background-position-y: 100%; /* ajusta a posição vertical da imagem */
-  width: 20%;
-  height: 50%;
-  left: 80%;
-  bottom: 0;
-  background-size: contain;
-  background-repeat: no-repeat;
 }
 
   @keyframes shake {

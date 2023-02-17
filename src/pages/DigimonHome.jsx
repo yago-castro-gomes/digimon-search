@@ -5,6 +5,7 @@ import { fetchAllDigimon } from '../services/digimonApi';
 import Loading from '../components/Loading';
 import '../styles/digimon-card.css';
 import { changeTraining } from '../services/changeTraining';
+import CardDigimon from '../components/CardDigimon';
 
 export default function DigimonHome() {
   const [dataApi, setDataApi] = useState([]);
@@ -35,16 +36,12 @@ export default function DigimonHome() {
         <div className="digimon-content">
           { dataApi.map((digimon) => (
             <div key={ digimon.name }>
-              <Link to={ `/detail/${digimon.name}` }>
-                <div className="digimon-card">
-                  <div className="digimon-name">
-                    { digimon.name }
-                  </div>
-                  <img src={ digimon.img } alt={ digimon.name } className="digimon-img" />
-                  <div className="digimon-level">
-                    {digimon.level}
-                  </div>
-                </div>
+              <Link to={ (`/detail/${digimon.name}`).toLocaleLowerCase() }>
+                <CardDigimon
+                  name={ digimon.name }
+                  img={ digimon.img }
+                  level={ digimon.level }
+                />
               </Link>
             </div>
           ))}

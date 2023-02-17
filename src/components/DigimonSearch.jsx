@@ -18,11 +18,11 @@ export default function DigimonHome() {
 
   const handleSearchName = () => {
     setNameDigimon('');
-    history.push(`/detail/${nameDigimon}`);
+    history.push((`/detail/${nameDigimon}`).toLocaleLowerCase());
   };
 
   const handleSearchLevel = () => {
-    history.push(`/level/${levelDigimon}`);
+    history.push((`/level/${levelDigimon}`).toLocaleLowerCase());
   };
 
   return (

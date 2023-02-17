@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
+import CardDigimon from '../components/CardDigimon';
 import Header from '../components/Header';
 import { changeTraining } from '../services/changeTraining';
 import '../styles/digimon-favorite.css';
@@ -24,9 +25,9 @@ export default function DigimonFavorite() {
   useEffect(() => {
     if (dataFavorite !== null) {
       if (levelDigimon !== 'All') {
-        const filterRookie = storageFavorite
-          .filter((rookie) => rookie.level === levelDigimon);
-        setDataFavorite(filterRookie);
+        const filterStorage = storageFavorite
+          .filter((storage) => storage.level === levelDigimon);
+        setDataFavorite(filterStorage);
       }
       if (levelDigimon === 'All') {
         setDataFavorite(storageFavorite);
@@ -98,19 +99,11 @@ export default function DigimonFavorite() {
                   { dataFavorite.map((digimon) => (
                     <div key={ digimon.name }>
                       <Link to={ `/detail/${digimon.name}` }>
-                        <div className="digimon-card">
-                          <div className="digimon-name">
-                            { digimon.name }
-                          </div>
-                          <img
-                            src={ digimon.img }
-                            alt={ digimon.name }
-                            className="digimon-img"
-                          />
-                          <div className="digimon-level">
-                            {digimon.level}
-                          </div>
-                        </div>
+                        <CardDigimon
+                          name={ digimon.name }
+                          img={ digimon.img }
+                          level={ digimon.level }
+                        />
                       </Link>
                     </div>
                   ))}
