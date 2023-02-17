@@ -1,0 +1,55 @@
+#digimon-content-detail{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    font-size: 30px;
+    padding: 30px;
+}
+
+#favorite-detail-btn{
+    margin: auto;
+    cursor: pointer;
+    width: 50px;
+    background-color: transparent;
+    border: none;
+}
+
+#digimon-card-detail{
+    display: flex;
+    background-color: white;
+    border: 1px solid black;
+    margin: 15px;
+    width: 500px;
+    border-radius: 15px;
+    flex-direction: column;
+    color: black;
+    padding: 50px;
+    text-align: center;
+    box-shadow: 1px 1px 1px 1px black;
+}
+
+#digimon-name-detail{
+    border-bottom: 0.5px solid rgb(219, 209, 209);
+    margin-bottom: 25px;
+    font-size: 30px;
+}
+
+#digimon-img-detail{
+    margin-bottom: 20px;
+}
+
+#digimon-level-detail{
+    border: 1px solid black;
+    border-radius: 20px;
+    padding: 3px;
+    width: 200px;
+    margin: auto;
+    color: white;
+    background-color: rgb(160, 159, 159);
+}
+
+#digimon-level-detail:hover {
+    background-color: #443c70;
+}
+

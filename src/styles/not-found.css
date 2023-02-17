@@ -1,0 +1,6 @@
+#not-found-container{
+    background-image: url('../images/not-found.png');
+    background-repeat: no-repeat;
+    background-position: center;
+    height: 100vh;
+}
